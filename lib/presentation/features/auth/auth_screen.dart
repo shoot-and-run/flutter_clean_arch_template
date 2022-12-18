@@ -25,11 +25,11 @@ class _AuthScreenState extends CubitState<AuthScreen, AuthState, AuthCubit> {
     final state = cubit(context).state;
 
     nicknameTextController
-      ..text = state.nickname
+      ..text = state.username
       ..selection = TextSelection.fromPosition(
           TextPosition(offset: nicknameTextController.text.length))
       ..addListener(() {
-        cubit(context).onNicknameChanged(nicknameTextController.text);
+        cubit(context).onUsernameChanged(nicknameTextController.text);
       });
 
     passwordTextController
@@ -64,7 +64,7 @@ class _AuthScreenState extends CubitState<AuthScreen, AuthState, AuthCubit> {
                       controller: nicknameTextController,
                       errorText: state.dataIsIncorrect
                           ? 'Username or/and password is incorrect'
-                          : state.invalidNickname
+                          : state.invalidUsername
                               ? 'This field is required'
                               : null,
                       padding: const EdgeInsets.symmetric(horizontal: 25),

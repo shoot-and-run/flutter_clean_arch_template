@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:clean_arch_template/domain/entities/login_params.dart';
 import 'package:clean_arch_template/domain/exceptions/login_data_incorrect.dart';
 import 'package:clean_arch_template/domain/repositories/auth_repository.dart';
 import 'package:clean_arch_template/utils/logger.dart';
@@ -17,9 +18,14 @@ class AuthCubit extends Cubit<AuthState> {
   final logger = getLogger('AuthCubit');
 
   Future<void> onLogIn() async {
-    if (state.nickname.isNotEmpty && state.password.isNotEmpty) {
+    if (state.username.isNotEmpty && state.password.isNotEmpty) {
       try {
-        await _authRepository.logIn(state.nickname, state.password);
+        await _authRepository.logIn(
+          LoginParams(
+            username: state.username,
+            password: state.password,
+          ),
+        );
 
         emit(state.copyWith(isSuccess: true));
       } on LoginDataIncorrectException {
@@ -29,16 +35,16 @@ class AuthCubit extends Cubit<AuthState> {
       }
     } else {
       emit(state.copyWith(
-        invalidNickname: state.nickname.isEmpty,
+        invalidUsername: state.username.isEmpty,
         invalidPassword: state.password.isEmpty,
       ));
     }
   }
 
-  void onNicknameChanged(String nickname) {
+  void onUsernameChanged(String nickname) {
     emit(state.copyWith(
-      nickname: nickname,
-      invalidNickname: false,
+      username: nickname,
+      invalidUsername: false,
       dataIsIncorrect: false,
     ));
   }

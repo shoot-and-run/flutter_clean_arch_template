@@ -1,0 +1,8 @@
+{
+  "incorrect_email": "Incorrect email",
+  "email_already_used": "Email already used",
+  "incorrect_username": "Incorrect name",
+  "incorrect_password": "Incorrect password",
+  "incorrect_confirmedPassword": "Passwords do not match",
+  "incorrect_email_or_password": "Incorrect email or password"
+}

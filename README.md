@@ -8,4 +8,4 @@ This template includes default implementation of authentication (login)
 
 1) Run code generation:
    `flutter packages pub run build_runner build --delete-conflicting-outputs`
-# flutter_clean_arch_template
+   `flutter pub run easy_localization:generate -S "assets/translations" -O "lib/presentation/base/localization" -o "locale_keys.g.dart" -f keys`

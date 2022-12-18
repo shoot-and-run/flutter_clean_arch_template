@@ -3,18 +3,18 @@ part of 'auth_cubit.dart';
 @immutable
 class AuthState extends Equatable {
   const AuthState({
-    this.nickname = '',
+    this.username = '',
     this.password = '',
-    this.invalidNickname = false,
+    this.invalidUsername = false,
     this.invalidPassword = false,
     this.isSuccess = false,
     this.dataIsIncorrect = false,
   });
 
-  final String nickname;
+  final String username;
   final String password;
 
-  final bool invalidNickname;
+  final bool invalidUsername;
   final bool invalidPassword;
 
   final bool isSuccess;
@@ -22,17 +22,17 @@ class AuthState extends Equatable {
   final bool dataIsIncorrect;
 
   AuthState copyWith({
-    String? nickname,
+    String? username,
     String? password,
-    bool? invalidNickname,
+    bool? invalidUsername,
     bool? invalidPassword,
     bool? isSuccess,
     bool? dataIsIncorrect,
   }) {
     return AuthState(
-      nickname: nickname ?? this.nickname,
+      username: username ?? this.username,
       password: password ?? this.password,
-      invalidNickname: invalidNickname ?? this.invalidNickname,
+      invalidUsername: invalidUsername ?? this.invalidUsername,
       invalidPassword: invalidPassword ?? this.invalidPassword,
       isSuccess: isSuccess ?? this.isSuccess,
       dataIsIncorrect: dataIsIncorrect ?? this.dataIsIncorrect,
@@ -41,10 +41,10 @@ class AuthState extends Equatable {
 
   @override
   List<Object?> get props => [
-        nickname,
+        username,
         password,
         isSuccess,
-        invalidNickname,
+        invalidUsername,
         invalidPassword,
         dataIsIncorrect,
       ];

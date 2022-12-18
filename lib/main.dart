@@ -1,11 +1,21 @@
 import 'package:beamer/beamer.dart';
 import 'package:clean_arch_template/di/di_host.dart';
+import 'package:clean_arch_template/presentation/base/localization/localization_widget.dart';
 import 'package:clean_arch_template/presentation/base/navigation/navigation.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const DIHost(child: MyApp()));
+  await EasyLocalization.ensureInitialized();
+
+  runApp(
+    LocalizationWidget(
+      child: const DIHost(
+        child: MyApp(),
+      ),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,6 +31,9 @@ class MyApp extends StatelessWidget {
       ),
       routeInformationParser: BeamerParser(),
       routerDelegate: routerDelegate,
+      supportedLocales: context.supportedLocales,
+      localizationsDelegates: context.localizationDelegates,
+      locale: context.locale,
     );
   }
 }
